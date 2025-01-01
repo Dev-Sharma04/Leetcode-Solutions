@@ -1,5 +1,9 @@
-Q. Given a string s of 0 and 1. Give the maximum score you can get by segregating the string into two subparts, left and right. 
-The score is defined as no. of zeroes in the left part and no. of ones in right part.
+/* Given a string s of 0 and 1. Give the maximum score you can get by segregating the string into two subparts, left and right. 
+The score is defined as no. of zeroes in the left part and no. of ones in right part.*/
+
+//Approach 1: Brute Force
+// T.C : O(n^2)
+// S.C : O(1)
 
 class Solution {
 public:
@@ -19,3 +23,5 @@ public:
         return ans;
     }
 };
+
+
