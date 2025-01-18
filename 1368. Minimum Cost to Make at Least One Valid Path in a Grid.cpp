@@ -41,7 +41,7 @@ public:
 
 
 //Approach 2 : Using Dijkstra
-//T.C : O(m*n)
+//T.C : O(m*n*log(m*n))
 //S.C : O(m*n)
 
 class Solution {
@@ -81,7 +81,7 @@ public:
     }
 };
 
-        vector<vector<bool>> vis(m,vector<bool>(n,0));    
+
 
         return dfs(0,0,grid,vis,0);    //backtracking wala code se exploring all paths
     }
