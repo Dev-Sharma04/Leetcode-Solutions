@@ -4,8 +4,8 @@
 // The first robot wants to minimize the number of points collected by the second robot. In contrast, the second robot wants to maximize the number of points it collects. If both robots play optimally, return the number of points collected by the second robot
 
 //Approach 1 : Using Prefix Sum and following game strategy
-//T.C :
-//S.C :
+//T.C : O(n)
+//S.C : O(1)
 
 // what have we done? So, we realised that robot 1 has only two moves, i.e down or right.
 // So, at every time if he goes down then all the above remaining row ele will go to robot 2
