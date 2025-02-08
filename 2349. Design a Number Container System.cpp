@@ -39,3 +39,36 @@ public:
     }
 };
 
+//Approach 2 : Using set and ppriority queue
+//T.C : O(n)
+//S.C : O(n)
+
+class NumberContainers {
+public:
+    unordered_map<int,int> idx2Num; //idx->num
+    unordered_map<int,priority_queue<int,vector<int>, greater<int>>> num2Idx; // num -> {idx..}
+    NumberContainers() {
+        //it is a constructor is case mai kch ni krna
+        // idx2Num.clear();
+        // num2Idx.clear();
+    }
+    
+    void change(int index, int number) {
+        
+        idx2Num[index] = number;
+        num2Idx[number].push(index);
+    }
+    
+    int find(int number) {
+        if(!num2Idx.count(number))return -1;
+
+        auto &pq = num2Idx[number];
+        while(!pq.empty()){
+            int idx = pq.top();
+            if(idx2Num[idx] == number)return idx;
+            
+            pq.pop();
+        }
+        return -1;
+    }
+};
