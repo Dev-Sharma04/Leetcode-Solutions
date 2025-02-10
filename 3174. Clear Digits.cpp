@@ -5,7 +5,7 @@
 
 //Approach  : Using stack
 //T.C : O(n)
-//S.C : O(1)
+//S.C : O(n)
 
 class Solution {
 public:
