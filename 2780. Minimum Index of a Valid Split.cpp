@@ -35,6 +35,50 @@ public:
             if(m1[num]*2 > n1 && m2[num]*2 > n2){
                 return i;
             }
+
+
+  //Approach : Using Majority Element Algorithm (Bayer- Moore)
+  //T.C : O(n)
+  //S.C : O(1)
+
+class Solution {
+public:
+    int minimumIndex(vector<int>& nums) {
+        int n = nums.size();
+        //Boyer-Moore Algorithm :- Finds out majority element in the array
+        int maj = -1;
+        int freq = 0;
+        for(int i = 0; i < n; i++){
+            if(freq == 0){
+                maj = nums[i];
+                freq = 1;
+            }
+            else{
+                if(maj != nums[i]){
+                    freq--;
+                }
+                else freq++;
+            }
+        }
+
+        int majCnt = 0;
+        for(int i = 0; i < n; i++){
+            if(nums[i]== maj)majCnt++;
+        }
+
+        freq = 0;
+        for(int i = 0; i < n; i++){
+            if(nums[i] == maj){
+                freq++;
+            }
+            int remainingCnt = majCnt - freq;
+            int n1 = i+1;
+            int n2 = n-i-1;
+            if(freq*2 > n1 && remainingCnt*2 > n2)return i; 
+        }
+        return -1;
+    }
+};
         }
         return -1;
     }
