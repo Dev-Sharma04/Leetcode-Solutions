@@ -17,26 +17,31 @@ A node a is an ancestor of b if either: any child of a is equal to b or any chil
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 class Solution {
 public:
-    void solve(TreeNode* root, vector<int>&v){
-        if(!root)return;
+    int solve(TreeNode* root, int mini, int maxi,int ans){
+        if(!root)return ans;
 
-        if(root -> left == NULL && root -> right == NULL)v.push_back(root -> val);
+        mini = min(root -> val, mini);
+        maxi = max(root -> val, maxi);
 
-        solve(root->left,v);
-        solve(root->right,v);
+        ans = abs(maxi - mini);
+
+        return max(solve(root -> left,mini,maxi,ans), solve(root -> right,mini,maxi,ans));
+
     }
-    bool leafSimilar(TreeNode* root1, TreeNode* root2) {
-        vector<int> v1;
-        solve(root1,v1);
-        vector<int> v2;
-        solve(root2,v2);
-        if(v1.size() != v2.size())return false;
-
-        for(int i = 0; i < v1.size(); i++){
-            if(v1[i] != v2[i])return false;
-        }
-        return true;
+    int maxAncestorDiff(TreeNode* root) {
+        return solve(root,INT_MAX,INT_MIN,0);
     }
 };
